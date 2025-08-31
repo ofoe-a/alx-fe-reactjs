@@ -1,5 +1,5 @@
-import WelcomeMessage from './components/WelcomeMessage';
 import './App.css';
+import WelcomeMessage from './components/WelcomeMessage';
 
 function App() {
   return (
