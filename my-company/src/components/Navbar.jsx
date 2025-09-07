@@ -1,31 +1,31 @@
-// src/components/Navbar.jsx
 import { NavLink } from "react-router-dom";
 
-const bar = {
-  display: "flex",
-  gap: 16,
-  alignItems: "center",
-  padding: "12px 20px",
-  borderBottom: "1px solid #eee",
-};
-
-const link = ({ isActive }) => ({
-  textDecoration: "none",
-  fontWeight: 600,
-  padding: "6px 10px",
-  borderRadius: 8,
-  background: isActive ? "#f2f2f2" : "transparent",
-  color: "#222",
-});
-
 export default function Navbar() {
+  const navStyle = {
+    display: "flex",
+    justifyContent: "space-between",  
+    alignItems: "center",
+    padding: "12px 20px",
+    backgroundColor: "#f4f4f4",       
+    borderBottom: "1px solid #ccc",
+  };
+
+  const linkStyle = {
+    margin: "0 10px",
+    textDecoration: "none",
+    color: "black",
+    fontWeight: "bold",
+  };
+
   return (
-    <nav style={bar}>
-      <span style={{ fontWeight: 800 }}>my-company</span>
-      <NavLink to="/" style={link} end>Home</NavLink>
-      <NavLink to="/about" style={link}>About</NavLink>
-      <NavLink to="/services" style={link}>Services</NavLink>
-      <NavLink to="/contact" style={link}>Contact</NavLink>
+    <nav style={navStyle}>
+      <div style={{ fontWeight: "bold" }}>My Company</div>
+      <div>
+        <NavLink to="/" style={linkStyle}>Home</NavLink>
+        <NavLink to="/about" style={linkStyle}>About</NavLink>
+        <NavLink to="/services" style={linkStyle}>Services</NavLink>
+        <NavLink to="/contact" style={linkStyle}>Contact</NavLink>
+      </div>
     </nav>
   );
 }
