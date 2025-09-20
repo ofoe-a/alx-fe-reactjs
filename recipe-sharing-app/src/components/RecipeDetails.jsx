@@ -1,37 +1,14 @@
-import { useParams, Link } from 'react-router-dom';
 import useRecipeStore from './recipeStore';
-import EditRecipeForm from './EditRecipeForm';
-import DeleteRecipeButton from './DeleteRecipeButton';
+import FavoriteButton from './FavoriteButton';
 
-const RecipeDetails = () => {
-  const { id } = useParams();    
-  const recipe = useRecipeStore((s) =>
-    s.recipes.find((r) => String(r.id) === String(id))
-  );
-
-  if (!recipe) {
-    return (
-      <div style={{ padding: 20 }}>
-        <p>Recipe not found.</p>
-        <Link to="/">Back to list</Link>
-      </div>
-    );
-  }
+export default function RecipeDetails({ recipeId }) {
+  const recipe = useRecipeStore((s) => s.recipes.find((r) => String(r.id) === String(recipeId)));
+  if (!recipe) return <p>Recipe not found</p>;
 
   return (
-    <div style={{ padding: 20, maxWidth: 600 }}>
-      <Link to=" / ">&larr; Back</Link>
-      <h1 style={{ marginTop: 8 }}>{recipe.title}</h1>
-      <p style={{ whiteSpace: 'pre-wrap' }}>{recipe.description}</p>
-
-      <h2 style={{ marginTop: 24 }}>Edit</h2>
-      <EditRecipeForm recipe={recipe} />
-
-      <div style={{ marginTop: 16 }}>
-        <DeleteRecipeButton id={recipe.id} />
-      </div>
+    <div>
+      <h1>{recipe.title} <FavoriteButton id={recipe.id} /></h1>
+      {recipe.description ? <p>{recipe.description}</p> : null}
     </div>
   );
-};
-
-export default RecipeDetails;
+}

@@ -3,6 +3,8 @@ import AddRecipeForm from './components/AddRecipeForm.jsx';
 import RecipeList from './components/RecipeList.jsx';
 import RecipeDetails from './components/RecipeDetails.jsx';
 import SearchBar from './components/SearchBar.jsx';
+import FavoritesList from './components/FavoritesList.jsx';
+import RecommendationsList from './components/RecommendationsList.jsx';
 
 function RecipeDetailsWrapper() {
   const { id } = useParams();
@@ -22,6 +24,8 @@ export default function App() {
                 <SearchBar />
                 <AddRecipeForm />
                 <RecipeList />
+                <FavoritesList />
+                <RecommendationsList />
               </>
             }
           />
