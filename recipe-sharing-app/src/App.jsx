@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-r
 import AddRecipeForm from './components/AddRecipeForm.jsx';
 import RecipeList from './components/RecipeList.jsx';
 import RecipeDetails from './components/RecipeDetails.jsx';
+import SearchBar from './components/SearchBar.jsx';
 
 function RecipeDetailsWrapper() {
   const { id } = useParams();
@@ -14,7 +15,16 @@ export default function App() {
       <div style={{ padding: 20 }}>
         <h1>Recipe Sharing App</h1>
         <Routes>
-          <Route path="/" element={<><AddRecipeForm /><RecipeList /></>} />
+          <Route
+            path="/"
+            element={
+              <>
+                <SearchBar />
+                <AddRecipeForm />
+                <RecipeList />
+              </>
+            }
+          />
           <Route path="/recipes/:id" element={<RecipeDetailsWrapper />} />
           <Route path="*" element={<div>Not found. <Link to="/">Home</Link></div>} />
         </Routes>
