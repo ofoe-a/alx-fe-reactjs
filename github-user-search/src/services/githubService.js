@@ -3,29 +3,21 @@ import axios from "axios";
 const api = axios.create({
   baseURL: "https://api.github.com",
   headers: (() => {
-    const token = import.meta.env.VITE_APP_GITHUB_API_KEY; 
-    return token ? { Authorization: `token ${token}` } : {};
+    const t = import.meta.env.VITE_APP_GITHUB_API_KEY;
+    return t ? { Authorization: `token ${t}` } : {};
   })(),
 });
 
-
 export async function fetchUserData(username) {
-  if (!username) throw new Error("Username is required");
-  try {
-    const { data } = await api.get(`/users/${encodeURIComponent(username)}`);
-    return data;
-  } catch (err) {
-   
-    if (err?.response?.status === 404) {
-      const notFound = new Error("NOT_FOUND");
-      notFound.code = 404;
-      throw notFound;
-    }
-    if (err?.response?.status === 403) {
-      const rate = new Error("RATE_LIMIT");
-      rate.code = 403;
-      throw rate;
-    }
-    throw err;
-  }
+  const { data } = await api.get(`/users/${encodeURIComponent(username)}`);
+  return data;
+}
+
+
+export async function searchUsersAdvanced({ q, page = 1, perPage = 10 }) {
+  const { data } = await api.get("/search/users", {
+    params: { q, page, per_page: perPage },
+  });
+  
+  return data;
 }
