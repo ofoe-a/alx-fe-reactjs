@@ -1,3 +1,12 @@
-import.meta.env.VITE_APP_GITHUB_API_KEY
+import Search from "./components/Search.jsx";
 
-export default App
+export default function App() {
+  return (
+    <main>
+      <h1 style={{ textAlign: "center", marginTop: "1.5rem" }}>
+        GitHub User Search
+      </h1>
+      <Search />
+    </main>
+  );
+}
