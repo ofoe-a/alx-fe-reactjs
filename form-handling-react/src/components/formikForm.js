@@ -1,8 +1,9 @@
+// src/components/formikForm.js
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const schema = Yup.object({
-  username: Yup.string().trim().required("Username is required"),
+  username: Yup.string().required("Username is required"),
   email: Yup.string().email("Enter a valid email").required("Email is required"),
   password: Yup.string().min(6, "Min 6 characters").required("Password is required"),
 });
@@ -11,9 +12,10 @@ export default function FormikForm() {
   return (
     <div style={{ maxWidth: 420, margin: "32px auto" }}>
       <h2>Register (Formik + Yup)</h2>
+
       <Formik
         initialValues={{ username: "", email: "", password: "" }}
-        validationSchema={schema}
+        validationSchema={schema}       
         onSubmit={(values, helpers) => {
           alert(`Registered: ${values.username} / ${values.email}`);
           helpers.resetForm();
