@@ -1,9 +1,9 @@
-// src/components/PostsComponent.jsx
 import { useState } from "react";
 import { useQuery } from "react-query";
 
 const PAGE_SIZE = 10;
 
+// Fetch posts from JSONPlaceholder
 async function fetchPosts(page = 1) {
   const res = await fetch(
     `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${PAGE_SIZE}`
@@ -22,8 +22,9 @@ export default function PostsComponent() {
     error,
     isFetching,
   } = useQuery(["posts", page], () => fetchPosts(page), {
-    keepPreviousData: true,        // <-- required by the grader
-    staleTime: 1000 * 60,          // stays fresh for a minute
+    staleTime: 1000 * 60,
+    cacheTime: 1000 * 60 * 5,
+    keepPreviousData: true, 
     refetchOnWindowFocus: false,
   });
 
