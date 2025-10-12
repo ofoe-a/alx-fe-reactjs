@@ -49,7 +49,7 @@ export default function RegistrationForm() {
         {errors.username && <span style={styles.error}>{errors.username}</span>}
       </label>
 
-      <labe>
+      <label>
         Email
         <input
           name="email"
@@ -59,7 +59,7 @@ export default function RegistrationForm() {
           placeholder="you@example.com"
         />
         {errors.email && <span style={styles.error}>{errors.email}</span>}
-      </labe
+      </label>
       <label>
         Password
         <input
